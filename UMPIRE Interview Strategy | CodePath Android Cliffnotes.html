@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="en"><head><title>UMPIRE Interview Strategy | CodePath Android Cliffnotes</title><link href="/stylesheets/bootstrap.min.css?1518986132" rel="stylesheet" type="text/css" /><link href="/stylesheets/bootstrap-forms.min.css?1518986132" rel="stylesheet" type="text/css" /><link href="/stylesheets/markdown.css?1518986132" rel="stylesheet" type="text/css" /><link href="/stylesheets/style.css?1518986132" rel="stylesheet" type="text/css" /><meta content="width=device-width, initial-scale=1.0" name="viewport" /><script type="text/javascript">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-47712505-2', 'codepath.com');
+ga('require', 'linkid', 'linkid.js');
+ga('require', 'displayfeatures');
+ga('send', 'pageview');</script></head><body><div class="header"><div class="inner-content clearfix"><a class="pull-left" href="/compsci"><img height="30" src="/images/logos/codepath.svg?1518986132" /></a><div class="pull-right"><form action="/compsci/search" class="form-inline search" method="get" role="search"><div class="form-group"><input class="form-control" id="query" name="query" placeholder="Search" style="width: 20em;" type="text" value="" /><button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button></div></form></div></div></div><div class="container"><div class="row" id="wiki-content"><div class="markdown-toc" style="display:none"><div class="title">Jump to Section</div><div class="toc"><div class="toc-title">Table of Contents</div><ul><ul><li><a href="#introduction">Introduction</a></li></ul></ul><ul><ul><li><a href="#umpire-example">UMPIRE Example</a></li></ul></ul><ul><ul><ul><li><a href="#understand">Understand</a></li></ul></ul></ul><ul><ul><ul><ul><li><a href="#test-cases">Test Cases</a></li></ul></ul></ul></ul><ul><ul><ul><ul><li><a href="#questions">Questions</a></li></ul></ul></ul></ul><ul><ul><ul><li><a href="#match">Match</a></li></ul></ul></ul><ul><ul><ul><li><a href="#plan">Plan</a></li></ul></ul></ul><ul><ul><ul><li><a href="#implement">Implement</a></li></ul></ul></ul><ul><ul><ul><li><a href="#review">Review</a></li></ul></ul></ul><ul><ul><ul><ul><li><a href="#happy-path">Happy Path</a></li></ul></ul></ul></ul><ul><ul><ul><ul><li><a href="#edge-cases">Edge Cases</a></li></ul></ul></ul></ul><ul><ul><ul><li><a href="#evaluate">Evaluate</a></li></ul></ul></ul></div></div><h1 class="col-xs-4 col-sm-9 col-md-9 col-lg-9" id="wiki-title">UMPIRE Interview Strategy<div class="page-nav"><a class="btn btn-primary edit-link" href="https://github.com/codepath/compsci_guides/wiki/UMPIRE-Interview-Strategy/_edit">Edit Page</a><a class="btn btn-primary edit-link" href="https://github.com/codepath/compsci_guides/wiki/UMPIRE-Interview-Strategy/_history">Page History</a></div></h1><div id="wiki-body"><div class="markdown-body col-xs-6 col-sm-9 col-md-12 col-lg-12"><h2><a class="anchor" id="introduction" href="#introduction"><i class="fa fa-link"></i></a>Introduction</h2>
+
+<p>During a technical interview, the way you work towards your solution is often more important than the binary result of solving the problem or not. There are a number of good ways to show and communicate your work as you work through an algorithm problem. The UMPIRE method is another way to state the best practices that underlie the most successful approaches in a catchy name.</p>
+
+<p>UMPIRE stands for:</p>
+
+<ol>
+<li>
+<strong>Understand</strong> what the interviewer is asking for by using test cases and questions about the problem.</li>
+<li>
+<strong>Match</strong> what this problem looks like to known categories of problems, e.g. Linked List or Dynamic Programming and strategies or patterns in those categories.</li>
+<li>
+<strong>Plan</strong> the solution with appropriate visualizations and pseudocode.</li>
+<li>
+<strong>Implement</strong> the code to solve the algorithm.</li>
+<li>
+<strong>Review</strong> the code by running specific example(s) and recording values (watchlist) of your code's variables along the way.</li>
+<li>
+<strong>Evaluate</strong> the performance of your algorithm and state any strong/weak or future potential work.</li>
+</ol>
+
+<h2><a class="anchor" id="umpire-example" href="#umpire-example"><i class="fa fa-link"></i></a>UMPIRE Example</h2>
+
+<p>Let's practice using the UMPIRE technique on the following problem.</p>
+
+<blockquote>
+<p><strong>Partition:</strong> Write code to partition a linked list around a value x, such that all nodes less than x come before equal to x. If x is contained within the list, the values of x only need to be after the elements less than x (see below). The partition element x can appear anywhere in the "right partition"; it does not need to appear between the left and right partitions.</p>
+</blockquote>
+
+<h3><a class="anchor" id="understand" href="#understand"><i class="fa fa-link"></i></a>Understand</h3>
+
+<h4><a class="anchor" id="test-cases" href="#test-cases"><i class="fa fa-link"></i></a>Test Cases</h4>
+
+<p>One of the best ways to understand a problem is to come up with test cases. E.g.,
+</p><pre class="highlight" data-lang="PlainText"><code>Input: 3 -&gt; 5 -&gt; 8 -&gt; 5 -&gt; 10 -&gt; 2 -&gt; 1; partition = 5
+Output: 3 -&gt; 1 -&gt; 2 -&gt; 5 -&gt; 5 -&gt; 8 -&gt; 10</code></pre>
+
+Coming up with good test cases can be an art, but I typically like to cover one happy path or an average case. And any interesting edge cases. This can be tricky as it depends on the problem. 
+<pre class="highlight" data-lang="PlainText"><code>Input: 1; partition = 1
+Output: 1</code></pre>
+
+
+<h4><a class="anchor" id="questions" href="#questions"><i class="fa fa-link"></i></a>Questions</h4>
+
+<p>Remember that the interview is a dialog, so understanding the problem is best done as a dialog as well. Asking questions, like </p>
+
+<ol>
+<li>Should this be done in place?</li>
+<li>Does the ordering beyond the left/right of the partition matter?</li>
+</ol>
+
+<p>are very useful components to the dialog and are helpful for this problem.</p>
+
+<h3><a class="anchor" id="match" href="#match"><i class="fa fa-link"></i></a>Match</h3>
+
+<p>Linked List problems are usually some of the easiest to spot and so matching this to the Linked List category is a good choice. So we know we would like to employ Pointer Bookkeeping during the algorithm planning. So let's list out all the things that we might consider and our belief of match Likely, Neutral, Unlikely.</p>
+
+<ol>
+<li>Linked List = Likely</li>
+<li>Pointer Bookkeeping = Likely</li>
+<li>MultiPass = Unlikely</li>
+<li>Reverse = Unlikely</li>
+<li>Two-Pointer = Likely</li>
+<li>Dummy Head = Neutral</li>
+</ol>
+
+<h3><a class="anchor" id="plan" href="#plan"><i class="fa fa-link"></i></a>Plan</h3>
+
+<p>This is the harder part for Linked List problems as dealing with pointer management is where solving this problem can go awry. So we take advantage of our matching of Pointer Bookkeeping tool and perhaps a two-pointer strategy and dummy-head to move forward to visualize the solution.</p>
+
+<p><img src="https://i.imgur.com/tRaABBb.jpg" alt="Partition Plan" /></p>
+
+<p>In this pointer visualization, I started with the following assumption that I would have one pointer <code>l</code> at the end of the left side and <code>r</code> pointer at the last known right side position. Then <code>c</code> or really just <code>r.next</code> would test if the next node is greater than or less than the partition value <code>p</code>. In the case labeled 1, value of <code>c</code> is &gt;= <code>p</code> so in that case the <code>r</code> pointer moves forward.</p>
+
+<p>I then fast forward the bookkeeping visualization, to the next position where that condition doesn't hold. This is situation 2, in this case, we need to remove the <code>c</code> node from its position and place it somewhere on the left which in the written code is after the <code>l</code> node, but we recognize that we need to introduce a temporary pointer <code>t</code> so that we can move the <code>c</code> node into position without orphaning the rest of the list.</p>
+
+<p>Since this seems to handle all possible cases, I fast forward the visualization to deal with the end case. This situation 3 is when <code>r</code> reaches the end or <code>r.next</code>. So most likely the whole algorithm will be in a while loop to forward <code>r</code> until this condition fails.</p>
+
+<p>Finally, I revisit the initial condition of setting up the <code>l</code> and <code>r</code> pointer, in situation 4. Here, however, I realize that it would have been easier to utilize the dummy-head technique because there is a chance that the very first node could be &gt;= <code>p</code>, thus I would not be able to get the initial invariant I setup in the beginning with <code>l</code> pointing to the last node on the left side. So situation with situation 4, I create a <code>d</code> node or dummy-head that points to the actual head of the list and this is a great place to start <code>l</code>. However, now that we have the dummy-head and combined with the knowledge that we don't care about the ordering of the nodes within the left or right partitions we realize we could alter the algorithm to not use an <code>l</code> pointer and simply place the <code>c</code> nodes after the dummy to simplify the algorithm.</p>
+
+<h3><a class="anchor" id="implement" href="#implement"><i class="fa fa-link"></i></a>Implement</h3>
+
+<p>If our plan stage was successful, we should be able to implement the code by simply glueing the plan together while filling out the details of our language specific implementation. I like to write my implementation out in layers, where the first layer is me writing basic setup code and then talking to the pieces of the plan.
+</p><pre class="highlight" data-lang="Python"><code><span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="s">'dummy'</span><span class="p">)</span>
+  <span class="n">d</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nb">list</span>
+  <span class="c"># 4: Initialize r pointer to first value &gt;= p</span>
+  <span class="c"># 3: Loop until we run out of unknown values</span>
+  <span class="c"># 1: Handle right side value</span>
+  <span class="c"># 2: Handle left side value</span>
+  
+  <span class="c">## Pop off the dummy</span>
+  <span class="k">return</span> <span class="n">d</span><span class="o">.</span><span class="nb">next</span></code></pre>
+
+
+<p>Then, I proceed to implement the separate parts of the plan:
+</p><pre class="highlight" data-lang="Python"><code><span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="s">'dummy'</span><span class="p">)</span>
+  <span class="n">d</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nb">list</span>
+  <span class="c"># 4: Initialize r pointer to first value &gt;= p</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="nb">next</span>
+  <span class="k">while</span> <span class="n">r</span> <span class="ow">and</span> <span class="n">r</span><span class="o">.</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="nb">next</span>
+  <span class="c"># 3: Loop until we run out of unkown values</span>
+  <span class="k">while</span> <span class="n">r</span><span class="o">.</span><span class="nb">next</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="nb">next</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;=</span> <span class="n">p</span><span class="p">:</span>
+            <span class="c"># 1: Handle right side value</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">c</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># 2: Handle left side value</span>
+            <span class="n">r</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">d</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">c</span>
+            <span class="n">c</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">t</span>
+  <span class="c">## Pop off the dummy</span>
+  <span class="k">return</span> <span class="n">d</span><span class="o">.</span><span class="nb">next</span></code></pre>
+
+
+<p>As we can see, the mix of understanding the ordering requirements of the algorithm and the dummy-head technique we were able to further simplify our problem by removing the need for the situation 4 or initialization of our <code>l</code> and <code>r</code> pointers and getting rid of <code>l</code> altogether (really it was just renamed to <code>d</code>).</p>
+
+<h3><a class="anchor" id="review" href="#review"><i class="fa fa-link"></i></a>Review</h3>
+
+<p>The very important, but too often skimped on, review stage is next. Unfortunately, most interviewees just skim through the code to say yeah that looks right, but that IS NOT what review means. It means go through it as if you are debugging it, assuming there is a bug. If you do you woudn't just be saying yep, thats what I'd meant to write. Instead, you would be bringing the big debugging "guns". Watchlist of variables and stepping through the code line by line are the typical tools of choice to go for this stage.</p>
+
+<h4><a class="anchor" id="happy-path" href="#happy-path"><i class="fa fa-link"></i></a>Happy Path</h4>
+
+<ol>
+<li>Start with an average or happy case example, <code>list = 1 -&gt; 2 -&gt; 5 -&gt; 8 -&gt; 3</code> and <code>p = 5</code>.</li>
+<li>After second line <code>d -&gt; 1 -&gt; 2 ...</code>
+</li>
+<li><code>r == node(1)</code></li>
+<li>Examining the <code>r</code> while loop puts <code>r = node(5)</code>
+</li>
+<li>Examine the next while loop condition and indeed we have <code>r.next</code> so we enter the loop</li>
+<li>Set<code>c = node(8)</code>
+</li>
+<li>Uh oh, I notice a bug on the next line <code>c &gt;= p</code> doesn't make sense because <code>c</code> is a node and <code>p</code> is a value. So we would go up to change our code above to say <code>c.val &gt;= p</code>.</li>
+<li>Ok now <code>c.val == 8</code> so the if condition is true and we set <code>r = node(8)</code>.</li>
+<li>Then we go back to the while loop to check <code>r.next == node(3)</code> so we go in the while loop</li>
+<li>We set <code>c = node(3)</code>
+</li>
+<li>
+<code>c.val &lt; p</code> so we go to the else condition</li>
+<li>
+<code>r.next</code> is set to <code>None</code>
+</li>
+<li>
+<code>t</code> is set to <code>node(1)</code>
+</li>
+<li>We point <code>d</code> to <code>c</code> so we have <code>d -&gt; 3</code>
+</li>
+<li>But then we point <code>c</code> to t so we have <code>d -&gt; 3 -&gt; 1 -&gt; 2 -&gt; 5 -&gt; 8</code>
+</li>
+<li>We go back to the top of the while, but fail the while condition because <code>r.next == None</code>
+</li>
+<li>Exiting the loop the last line to run returns <code>d.next</code> or <code>3 -&gt; 1 -&gt; 2 -&gt; 5 -&gt; 8</code>, which satisfies the solution.</li>
+</ol>
+
+<h4><a class="anchor" id="edge-cases" href="#edge-cases"><i class="fa fa-link"></i></a>Edge Cases</h4>
+
+<ol>
+<li>Next, we check the most common edge case or passing the function an empty list. <code>partition(None, 5)</code>
+</li>
+<li>We go do the second line without problems and we now have <code>d</code>, that is the dummy head is pointing to None</li>
+<li>
+<code>r</code> is then set to <code>None</code>
+</li>
+<li>The while loop doesn't proceed as <code>r</code> is <code>None</code>
+</li>
+<li>Now we get to the second while loop and we notice a problem, <code>r.next</code> would dereference <code>None</code> which is not allowed.</li>
+<li>We could fix this a number of ways, but we decide to just change the loop condition to be <code>while r and r.next</code>
+</li>
+<li>After making that change, we continue to step through the code and exit the while loop immediately becase <code>r == None</code>
+</li>
+<li>At the last line, we return <code>d.next</code> or <code>None</code>, which satisfies the constraints of our algorithm.</li>
+</ol>
+
+<p>After our review of our algorithm we have the following code:</p>
+
+<pre class="highlight" data-lang="Python"><code><span class="k">def</span> <span class="nf">partition</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="n">ListNode</span><span class="p">(</span><span class="s">'dummy'</span><span class="p">)</span>
+  <span class="n">d</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="nb">list</span>
+  <span class="c"># 4: Initialize r pointer to first value &gt;= p</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="nb">next</span>
+  <span class="k">while</span> <span class="n">r</span> <span class="ow">and</span> <span class="n">r</span><span class="o">.</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="nb">next</span>
+  <span class="c"># 3: Loop until we run out of unkown values</span>
+  <span class="k">while</span> <span class="n">r</span> <span class="ow">and</span> <span class="n">r</span><span class="o">.</span><span class="nb">next</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="nb">next</span>
+        <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">val</span> <span class="o">&gt;=</span> <span class="n">p</span><span class="p">:</span>
+            <span class="c"># 1: Handle right side value</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">c</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># 2: Handle left side value</span>
+            <span class="n">r</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="nb">next</span>
+            <span class="n">d</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">c</span>
+            <span class="n">c</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">t</span>
+  <span class="c">## Pop off the dummy</span>
+  <span class="k">return</span> <span class="n">d</span><span class="o">.</span><span class="nb">next</span></code></pre>
+
+
+<h3><a class="anchor" id="evaluate" href="#evaluate"><i class="fa fa-link"></i></a>Evaluate</h3>
+
+<p>The last step of the UMPIRE strategy is to discuss the pros and cons of your algorithm with your interviewer. An algorithm much like a good interview is not amenable to correct/incorrect label, instead there are often things to discuss about what you like about your algorithm or code and what you would like to change depending on conditions, inputs, expectations, the business, etc.</p>
+
+<p>A great place to start this conversation and is almost always required is to discuss the asymptotic performance of the algorithm. Let's evaluate our algorithm. To do this, let's start with any loop statements. We have two loop statements. The first, is iterating the <code>r</code> pointer until it reaches the first node on the right side. In the best case, this wouldn't go further than the first position, in the worst case we would go to the end of the list without finding a right node. So this loop has <code>O(N)</code> time complexity where <code>N</code> is the length of the list.</p>
+
+<p>Now we go to the second loop. Again, we are iterating <code>r</code> and if we ignore the rest of the contents of the loop outside of how <code>r</code> is manipulated we get
+</p><pre class="highlight" data-lang="Python"><code><span class="k">while</span> <span class="n">r</span> <span class="ow">and</span> <span class="n">r</span><span class="o">.</span><span class="nb">next</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="nb">next</span> <span class="o">&gt;=</span> <span class="n">p</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="nb">next</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="nb">next</span><span class="o">.</span><span class="nb">next</span></code></pre>
+
+So again, the worst we can do is start at the beginning of the list and go to the end so this loop is <code>O(N)</code>. So total time complexity is <code>O(N)</code>.
+
+<p>Next, we move on to space complexity. We see that we are only requiring a constant number of pointers in addition to the list, so our space complexity is <code>O(1)</code>.</p>
+</div></div></div></div><a href="https://github.com/codepath/compsci_guides/wiki/" class="visible-md visible-lg"><img style="position: fixed; bottom: 0; right: 0; border: 0;" src="/images/fork_me.png?1518986132" alt="Fork me on GitHub"></a><script src="/javascripts/jquery.js?1518986132" type="text/javascript"></script><script src="/javascripts/jquery.absolutize.js?1518986132" type="text/javascript"></script><script src="/javascripts/bootstrap.min.js?1518986132" type="text/javascript"></script><script src="/javascripts/application.js?1518986132" type="text/javascript"></script></body></html>
