@@ -62,8 +62,8 @@ def longestSubstringAllUniqueChars(s: str) -> int:
     while right < len(s):
         # print(f"left: {left}, right: {right}, curMax: {curMax}, isUnique: {isUnique}")
         # print(f"current substring: {s[0:left]} -> {s[left:right]} <- {s[right:]}")
-        # print(charDict)
-        # print("")
+        print(charDict)
+        print("")
         # If current window is unique, move right pointer
         if isUnique:
             right += 1

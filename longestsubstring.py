@@ -11,7 +11,7 @@ def longestsubstring(s):
         else: # letter is not yet in the dictionary
             seen[letter] = index
             currlen += 1
-        print("Letter:", letter, "currlen:", currlen)
+        #print("Letter:", letter, "currlen:", currlen)
         maxlen = max(maxlen, currlen)
     return maxlen
 

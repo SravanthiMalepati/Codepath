@@ -1,6 +1,6 @@
 def substring(string1,string2):
-    len1 = len(string1)
-    len2 = len(string2)
+    len1 = len(string1)-1
+    len2 = len(string2)-1
     if len2 > len1: return False
     # for i,char in enumerate(string1):
     #     if char == string2[0]:

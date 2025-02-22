@@ -16,41 +16,40 @@ def frequency(arr,k):
     # res = [x[1] for x in heap]        
     # return res
         
-    hashmap = {}
-    for element in arr:
-        if element not in hashmap:
-            hashmap[element] = 1
-        else:
-            hashmap[element] += 1
-    for key, value in hashmap.items():
-        if value == k:
-            return key
+    # hashmap = {}
+    # for element in arr:
+    #     if element not in hashmap:
+    #         hashmap[element] = 1
+    #     else:
+    #         hashmap[element] += 1
+    # for key, value in hashmap.items():
+    #     if value == k:
+    #         return key
     
     # count_map = {}
     # n = len(arr)
     # ans = []
-    # for i in range(0, n):
+    # for i in range(n):
     #     if(arr[i] in count_map.keys()):
     #         count_map[arr[i]] += 1
     #     else:
     #         count_map[arr[i]] = 1
-    # for i in range(0, n):
+    # for i in range(n):
     #     if (count_map[arr[i]] == k):
-    #         return arr[i]
-    # return -1
+    #         return ans.append(arr[i])
+    # return ans if ans else -1  
 
-
-    # counter_value = Counter(arr)
-    # for i in range(0,len(arr)):
-    #     if (counter_value[arr[i]] == k):
-    #         ans.append(i)
-    #         return ans
-        
-
-    # return -1
-
-print(frequency([8, 7, 9, 6, 7, 5, 1],2))
-
-
+    ans = []
+    counter_value = Counter(arr)
+    # print(counter_value)
+    for num in counter_value:
+        if (counter_value[num] == k):
+            ans.append(num)
+    return ans if ans else 0 
+    
+print(frequency([8, 7, 9,1, 6, 7, 5, 1],2))
+print(frequency([1, 2, 3],3))
+print(frequency([1, 2, 2, 1, 4, 5],2))
+print(frequency([],2))
 # Time Complexity: O(n)
 # Space Complexity: O(n)
