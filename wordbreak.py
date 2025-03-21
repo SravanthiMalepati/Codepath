@@ -5,7 +5,7 @@ def wordBreak(s, wordDict):
     q = deque([0])
     while q:
         start = q.popleft()
-        print(s[start])
+        # print(s[start])
         if start == len(s):
             return True
         for end in range(start+1,len(s)+1):
